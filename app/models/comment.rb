@@ -5,5 +5,4 @@ class Comment < ApplicationRecord
   def comments_counter
     post.update_column(:comments_counter, post.comments.count)
   end
-  
 end
