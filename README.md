@@ -140,7 +140,7 @@ To fix the linter use:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](../../issues/).
+Feel free to check the [issues page](https://github.com/CesarHerr/blogApp/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
