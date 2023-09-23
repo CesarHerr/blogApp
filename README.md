@@ -73,6 +73,8 @@
 
 - **Database schema**
 
+- **Run unit test with Rspec**
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -93,7 +95,7 @@ Clone this repository to your desired folder:
 
 ```sh
   cd my-folder 
-  git clone https://github.com/AndreaM2429/Catalog_App
+  git clone https://github.com/CesarHerr/blogApp.git
 ```
 
 ### Usage
@@ -114,6 +116,12 @@ To fix the linter use:
 
 ```sh
   rubocop -A
+```
+
+To Run Test: 
+
+```sh
+  rspec spec
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
