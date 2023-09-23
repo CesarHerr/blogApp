@@ -131,7 +131,6 @@ To fix the linter use:
 
 - [] **Add view**
 - [] **Add form**
-- [] **Processing data in models**
 - [] **Add API endpoints**
 
 
