@@ -1,50 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>This is User show</title>
-  </head>
-  <body>
-    <main>
-      <header>
-        <h1>User name</h1>
-        <p>Number od posts: X</p>
-        <hr>
-      </header>
-      <section>
-        <h3>Bio</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In tempore hic aut quas quaerat. 
-          Eum maxime, incidunt ipsum molestias distinctio quos, natus, accusamus quia voluptatum consequuntur sint totam iusto repellat.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. In tempore hic aut quas quaerat. 
-          Eum maxime, incidunt ipsum molestias distinctio quos, natus, accusamus quia voluptatum consequuntur sint totam iusto repellat.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. In tempore hic aut quas quaerat. 
-          Eum maxime, incidunt ipsum molestias distinctio quos, natus, accusamus quia voluptatum consequuntur sint totam iusto repellat.         
-          </p>
-          <hr>
-        <ul>
-          <li>
-            <h3>Post #1</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-            <hr>
-          </li>
-          <li>
-            <h3>Post #2</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-            <hr>
-          </li>
-          <li>
-            <h3>Post #3</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-            <hr>
-          </li>
-          <li>
-            <h3>Post #4</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-            <hr>
-          </li>
-        </ul>  
-      </section>
-    </main>
-  </body>
-</html>
+<main>
+  <header>
+    <h1><%= @user.name%></h1>
+    <p>Number of posts: <%= @user.posts_counter%></p>
+    <hr />
+  </header>
+  <section>
+    <h3>Bio</h3>
+  </section>
+  <section>
+    <p><%= @user.bio%></p>
+    <hr />
+    <ul>
+      <% @post.each do |post| %>
+      <li>
+        <a
+          href="http://127.0.0.1:3000/users/<%= @user.id %>/posts/<%= post.id%>"
+        >
+          <h3>Post #<%= post.id %></h3>
+        </a>
+        <p><%= post.text%></p>
+        <hr />
+      </li>
+      <% end %>
+    </ul>
+    <form action="http://127.0.0.1:3000/users/<%= @user.id %>/posts/" method="get">
+      <button type="submit">See all posts</button>
+    </form>
+  </section>
+</main>
