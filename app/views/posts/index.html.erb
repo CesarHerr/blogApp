@@ -1,87 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>This is Post index</title>
-  </head>
-  <body>
-    <main>
-      <header>
-        <h1>User Name</h1>
-        <p>Number of Post: X</p>
+<main>
+  <header>
+    <h1>List of Posts</h1>
+  </header>
+  <ul>
+    <% @users.each do |user| %>
+      <li>
+        <h2><%= user.name %></h2>
+        <p>Number of posts: <%=user.posts_counter %></p>
         <hr>
-      </header>
-      <section>
         <ul>
-          <li>
-            <h3>Post #1</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
-              expedita tenetur velit nemo deleniti natus dist...
-            </p>
-            <ul>
+          <% @posts.each do |post| %>
+            <% if post.author_id == user.id %> 
               <li>
-                <p>Username: Comment 1</p>
+                <a href="http://127.0.0.1:3000/users/<%= post.author.id %>/posts/<%= post.id %>">
+                  <h3>Post #<%= post.id %></h3>  
+                </a>  
+                <p><%= post.text %></p>
+                <p>Comments: <%= post.comments_counter%>, Likes: <%= post.likes_counter%></p>
+                <hr>
+                <ul>
+                  <% @comments.each do |comment| %> 
+                    <% if post.id == comment.post_id %> 
+                      <li><strong><%=comment.author.name%>:</strong>  <i><%= comment.text %></i></li> 
+                    <% end %> 
+                  <% end %>
+                </ul>
               </li>
-              <li>
-                <p>Username: Comment 2</p>
-              </li>
-              <li>
-                <p>Username: Comment 3</p>
-              </li>
-              <li>
-                <p>Username: Comment 4</p>
-              </li>
-            </ul>   
-            <hr>         
-          </li>
-          <li>
-            <h3>Post #2</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
-              expedita tenetur velit nemo deleniti natus dist...
-            </p>
-            <ul>
-              <li>
-                <p>Username: Comment 1</p>
-              </li>
-              <li>
-                <p>Username: Comment 2</p>
-              </li>
-              <li>
-                <p>Username: Comment 3</p>
-              </li>
-              <li>
-                <p>Username: Comment 4</p>
-              </li>
-            </ul>
-            <hr>
-          </li>
-          <li>
-            <h3>Post #3</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
-              expedita tenetur velit nemo deleniti natus dist...
-            </p>
-            <ul>
-              <li>
-                <p>Username: Comment 1</p>
-              </li>
-              <li>
-                <p>Username: Comment 2</p>
-              </li>
-              <li>
-                <p>Username: Comment 3</p>
-              </li>
-              <li>
-                <p>Username: Comment 4</p>
-              </li>
-            </ul>
-            <hr>
-          </li>
+            <% end %> 
+          <% end %> 
         </ul>
-      </section>
-    </main>
-  </body>
-</html>
+      </li>
+    <% end %> 
+  </ul>
+</main>

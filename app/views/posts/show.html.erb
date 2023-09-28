@@ -1,72 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>This is Post show</title>
-  </head>
-  <body>
-    <main>
-      <header>
-        <h3>Post #1 by username</h3>
-        <i>Comments:x, Likes:y</i>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae,
-          beatae distinctio! Quidem reprehenderit fugiat, doloribus placeat
-          reiciendis nemo numquam! Commodi quod dolor, sequi ad beatae nobis
-          laudantium est facere mollitia! Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Recusandae, beatae distinctio! Quidem reprehenderit
-          fugiat, doloribus placeat reiciendis nemo numquam! Commodi quod dolor,
-          sequi ad beatae nobis laudantium est facere mollitia! Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Recusandae, beatae
-          distinctio! Quidem reprehenderit fugiat, doloribus placeat reiciendis
-          nemo numquam! Commodi quod dolor, sequi ad beatae nobis laudantium est
-          facere mollitia! Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Recusandae, beatae distinctio! Quidem reprehenderit fugiat,
-          doloribus placeat reiciendis nemo numquam! Commodi quod dolor, sequi
-          ad beatae nobis laudantium est facere mollitia! Lorem ipsum dolor sit
-          amet consectetur adipisicing elit. Recusandae, beatae distinctio!
-          Quidem reprehenderit fugiat, doloribus placeat reiciendis nemo
-          numquam! Commodi quod dolor, sequi ad beatae nobis laudantium est
-          facere mollitia!
-        </p>
-        <hr />
-      </header>
-      <section>
-        <ul>
-          <li>
-            <p>Username: Comment 1</p>
-          </li>
-          <li>
-            <p>Username: Comment 2</p>
-          </li>
-          <li>
-            <p>Username: Comment 3</p>
-          </li>
-          <li>
-            <p>Username: Comment 4</p>
-          </li>
-          <li>
-            <p>Username: Comment 5</p>
-          </li>
-          <li>
-            <p>Username: Comment 6</p>
-          </li>
-          <li>
-            <p>Username: Comment 7</p>
-          </li>
-          <li>
-            <p>Username: Comment 8</p>
-          </li>
-          <li>
-            <p>Username: Comment 9</p>
-          </li>
-          <li>
-            <p>Username: Comment 10</p>
-          </li>
-        </ul>
-        <hr />
-      </section>
-    </main>
-  </body>
-</html>
+<main>
+  <h1>Post #<%=@post.id%> by <%= @post.author.name%></h1>
+  <p>Comments: <%= @post.comments_counter%>, Likes: <%= @post.likes_counter%></p>
+  <p><%=@post.text%></p>
+  <hr>  
+  <ul>
+    <% @comments.each do |comment| %>
+      <% if @post.id == comment.post_id %> 
+        <li><strong><%=comment.author.name%>:</strong>  <i><%= comment.text %></i></li> 
+      <% end %> 
+    <% end %>
+  </ul>
+</main>
