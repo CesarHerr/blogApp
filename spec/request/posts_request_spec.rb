@@ -9,7 +9,7 @@ RSpec.describe 'Posts', type: :request do
     end
 
     it 'renders the index template' do
-      get "/users/:user_id/posts"
+      get '/users/:user_id/posts'
       expect(response).to render_template('index')
     end
 
@@ -27,7 +27,7 @@ RSpec.describe 'Posts', type: :request do
     end
 
     it 'renders the show template' do
-      get "/users/:user_id/posts/:post_id"
+      get '/users/:user_id/posts/:post_id'
       expect(response).to render_template('show')
     end
 

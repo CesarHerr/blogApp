@@ -9,7 +9,7 @@ RSpec.describe 'Users', type: :request do
     end
 
     it 'renders the index template' do
-      get "/users"
+      get '/users'
       expect(response).to render_template('index')
     end
 
