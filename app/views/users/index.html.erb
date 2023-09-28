@@ -1,34 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>This is User index</title>
-  </head>
-  <body>
-    <main>
-      <ul>
-        <li>
-          <h2>User Name</h2>
-          <p>Number of post: X</p>
-        </li>
-        <li>
-          <h2>User Name</h2>
-          <p>Number of post: X</p>
-        </li>
-        <li>
-          <h2>User Name</h2>
-          <p>Number of post: X</p>
-        </li>
-        <li>
-          <h2>User Name</h2>
-          <p>Number of post: X</p>
-        </li>
-        <li>
-          <h2>User Name</h2>
-          <p>Number of post: X</p>
-        </li>
-      </ul>
-    </main>
-  </body>
-</html>
+<main>
+  <h1>List of Users</h1>
+  <ul>
+    <% @users.each do |user| %>
+      <li>
+        <a href='http://127.0.0.1:3000/users/<%= user.id %>'><%= user.name %></a>
+        <p>Number of posts: <%= user.posts_counter%></p>
+        <hr>
+      </li>
+    <% end %>
+  </ul>
+</main>
