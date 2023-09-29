@@ -19,7 +19,7 @@
                 <p>Comments: <%= post.comments_counter%>, Likes: <%= post.likes_counter%></p>
                 <hr>
                 <ul>
-                  <% @comments.each do |comment| %> 
+                  <% post.recent_comments.each do |comment| %> 
                     <% if post.id == comment.post_id %> 
                       <li><strong><%=comment.author.name%>:</strong>  <i><%= comment.text %></i></li> 
                     <% end %> 
