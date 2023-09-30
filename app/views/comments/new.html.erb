@@ -1,12 +1,27 @@
-<h1>Add a new Comment for <%= @post.author.name %>'s post #<%= @post.id%></h1>
+<section class="container flex-col">
+  <h1 class="text-4xl text-center mb-4">
+    Add a new Comment for <%= @post.author.name %>'s post #<%= @post.id %>
+  </h1>
+
   <% if flash[:alert].present? %>
-    <p class="alert"><%= flash[:alert] %></p>
-  <% end %>
-<%= form_with model: [@user, @post, @comment], url: user_post_comments_path(@user, @post) do |form| %>
-  <div>
-    <%= form.label :Comment %>
-    <br>
-    <%= form.text_area :text %>
-  </div>  
-  <%= form.submit 'Create Comment' %> 
-<% end %>
+  <div
+    class="alert notice italic font-bold text-xl text-red-500 text-center py-2"
+  >
+    <%= flash[:alert] %>
+  </div>
+  <% end %> <%= form_with model: [@user, @post, @comment], url:
+  user_post_comments_path(@user, @post), class: 'p-4 border border-gray-300' do
+  |form| %>
+  <div class="mb-4">
+    <%= form.label :Comment, class: 'block text-gray-700 font-bold mb-2' %> <%=
+    form.text_area :text, class: 'w-full p-2 border rounded-md
+    focus:outline-none focus:ring focus:border-blue-300' %>
+  </div>
+  <div class="mb-4">
+    <%= form.submit 'Create Comment', class: 'w-full p-2 bg-blue-500 text-white
+    hover:bg-blue-700 rounded-md cursor-pointer' %>
+    <% end %>
+  </div>
+  
+  <%= render 'layouts/root'%>
+</section>
