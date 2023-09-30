@@ -1,0 +1,12 @@
+<h1>Add a new Comment for <%= @post.author.name %>'s post #<%= @post.id%></h1>
+  <% if flash[:alert].present? %>
+    <p class="alert"><%= flash[:alert] %></p>
+  <% end %>
+<%= form_with model: [@user, @post, @comment], url: user_post_comments_path(@user, @post) do |form| %>
+  <div>
+    <%= form.label :Comment %>
+    <br>
+    <%= form.text_area :text %>
+  </div>  
+  <%= form.submit 'Create Comment' %> 
+<% end %>
