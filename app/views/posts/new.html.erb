@@ -1,0 +1,26 @@
+<main>
+  <section>
+    <h1>Add a new Post for current user (<%= @user.name %>)</h1>
+    <% if flash[:alert].present? %>
+      <div class="alert">
+        <%= flash[:alert] %>
+      </div>
+    <% end %> 
+
+    <%= form_with model: [@user, @new_post] do |form| %>
+      <div>
+        <%= form.label :Title %>
+        <%= form.text_field :title %>
+      </div>
+      <div>
+        <%= form.label :Description %>
+        <%= form.text_area :text %>
+      </div>
+      <div>
+        <%= form.submit 'Create Post' %>
+      </div>
+    <% end %>
+  </section>
+  <br />
+  <%= render 'layouts/root'%>
+</main>
