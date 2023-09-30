@@ -1,33 +1,44 @@
-<main>
-  <header>
-    <h1><%= @user.name%></h1>
-    <p>Number of posts: <%= @user.posts_counter%></p>
-    <hr />
+<section class="container flex-col">
+  <header
+    class="pl-3 pr-3 border-solid border-1 bg-gray-300 grid grid-cols-4 relative"
+  >
+    <div class="col-span-1"><%= image_tag @user.photo %></div>
+    <h1 class="text-4xl my-auto font-bold col-span-2"><%= @user.name%></h1>
+    <p class="col-span-1 absolute right-2 bottom-2">
+      Number of posts: <%= @user.posts_counter%>
+    </p>
   </header>
-  <section>
-    <h3>Bio</h3>
-    <p><%= @user.bio%></p>
-  </section>
-  <section>    
-    <hr />
+  <div class="bg-gray-200 p-4">
+    <h3 class="text-2xl">Bio</h3>
+    <p class="text-xl"><%= @user.bio%></p>
+  </div>
+  <div class="bg-gray-200">
     <% if flash[:notice].present? %>
-      <p class="notice"><%= flash[:notice] %></p>
+    <p class="notice italic font-bold text-xl text-red-500 text-center py-2"><%= flash[:notice] %></p>
     <% end %>
-    <ul>
+    <ul class="p-4">
       <% @post.each do |post| %>
       <li>
         <%= link_to user_post_path(user_id: post.author_id, id: post.id) do%>
-          <h3>Post #<%= post.id %></h3>
-        <% end %> 
-        <p><%= post.text%></p>
-        <hr />
+        <h3
+          class="text-xl font-bold hover:scale-y-125 hover:bg-gray-300 transition-all"
+        >
+          Post #<%= post.id %>
+        </h3>
+        <% end %>
+        <p class="italic border-t border-gray-300 p-4"><%= post.text%></p>
       </li>
       <% end %>
-    </ul>  
-    <%= link_to user_posts_path(@user) do%>
-    <button type="button">Post by Users</button>
-  <% end %>   
-  </section>
-  <br>
-  <%= render 'layouts/root'%>
-</main>
+    </ul>
+  </div>
+  <div class="flex justify-between gap-8 pt-4 pb-10">
+    <div>
+      <%= link_to user_posts_path(@user) do%>
+      <button class="text-3xl hover:scale-y-125 transition-all" type="button">
+        Post by Users
+      </button>
+      <% end %>
+    </div>  
+    <%= render 'layouts/root'%>    
+  </div>
+</section>
