@@ -1,12 +1,20 @@
 <main>
+<section>
   <h1>List of Users</h1>
   <ul>
     <% @users.each do |user| %>
-      <li>
-        <a href='http://127.0.0.1:3000/users/<%= user.id %>'><%= user.name %></a>
-        <p>Number of posts: <%= user.posts_counter%></p>
+      <li>    
+        <%= link_to user_path(id: user.id) do%>
+          <h3><%= user.name %></h3>
+        <% end %>
+        <p>Number of posts: <%= user.posts_counter%></p>  
         <hr>
       </li>
     <% end %>
   </ul>
+  </section>
+  <%= link_to new_user_post_path(@user) do %>
+    <h2>Add a new Post</h2>
+  <% end %>
+
 </main>

@@ -6,25 +6,28 @@
   </header>
   <section>
     <h3>Bio</h3>
-  </section>
-  <section>
     <p><%= @user.bio%></p>
+  </section>
+  <section>    
     <hr />
+    <% if flash[:notice].present? %>
+      <p class="notice"><%= flash[:notice] %></p>
+    <% end %>
     <ul>
       <% @post.each do |post| %>
       <li>
-        <a
-          href="http://127.0.0.1:3000/users/<%= @user.id %>/posts/<%= post.id%>"
-        >
+        <%= link_to user_post_path(user_id: post.author_id, id: post.id) do%>
           <h3>Post #<%= post.id %></h3>
-        </a>
+        <% end %> 
         <p><%= post.text%></p>
         <hr />
       </li>
       <% end %>
-    </ul>
-    <form action="http://127.0.0.1:3000/users/<%= @user.id %>/posts/" method="get">
-      <button type="submit">See all posts</button>
-    </form>
+    </ul>  
+    <%= link_to user_posts_path(@user) do%>
+    <button type="button">Post by Users</button>
+  <% end %>   
   </section>
+  <br>
+  <%= render 'layouts/root'%>
 </main>
