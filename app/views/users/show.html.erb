@@ -1,30 +1,44 @@
-<main>
-  <header>
-    <h1><%= @user.name%></h1>
-    <p>Number of posts: <%= @user.posts_counter%></p>
-    <hr />
+<section class="container flex-col">
+  <header
+    class="pl-3 pr-3 border-solid border-1 bg-gray-300 grid grid-cols-4 relative"
+  >
+    <div class="col-span-1"><%= image_tag @user.photo %></div>
+    <h1 class="text-4xl my-auto font-bold col-span-2"><%= @user.name%></h1>
+    <p class="col-span-1 absolute right-2 bottom-2">
+      Number of posts: <%= @user.posts_counter%>
+    </p>
   </header>
-  <section>
-    <h3>Bio</h3>
-  </section>
-  <section>
-    <p><%= @user.bio%></p>
-    <hr />
-    <ul>
+  <div class="bg-gray-200 p-4">
+    <h3 class="text-2xl">Bio</h3>
+    <p class="text-xl"><%= @user.bio%></p>
+  </div>
+  <div class="bg-gray-200">
+    <% if flash[:notice].present? %>
+    <p class="notice italic font-bold text-xl text-red-500 text-center py-2"><%= flash[:notice] %></p>
+    <% end %>
+    <ul class="p-4">
       <% @post.each do |post| %>
       <li>
-        <a
-          href="http://127.0.0.1:3000/users/<%= @user.id %>/posts/<%= post.id%>"
+        <%= link_to user_post_path(user_id: post.author_id, id: post.id) do%>
+        <h3
+          class="text-xl font-bold hover:scale-y-125 hover:bg-gray-300 transition-all"
         >
-          <h3>Post #<%= post.id %></h3>
-        </a>
-        <p><%= post.text%></p>
-        <hr />
+          Post #<%= post.id %>
+        </h3>
+        <% end %>
+        <p class="italic border-t border-gray-300 p-4"><%= post.text%></p>
       </li>
       <% end %>
     </ul>
-    <form action="http://127.0.0.1:3000/users/<%= @user.id %>/posts/" method="get">
-      <button type="submit">See all posts</button>
-    </form>
-  </section>
-</main>
+  </div>
+  <div class="flex justify-between gap-8 pt-4 pb-10">
+    <div>
+      <%= link_to user_posts_path(@user) do%>
+      <button class="text-3xl hover:scale-y-125 transition-all" type="button">
+        Post by Users
+      </button>
+      <% end %>
+    </div>  
+    <%= render 'layouts/root'%>    
+  </div>
+</section>

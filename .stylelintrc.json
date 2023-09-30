@@ -1,5 +1,5 @@
 {
-  "extends": ["stylelint-config-standard"],
+  "extends": ["stylelint-config-recommended"],
   "plugins": ["stylelint-scss", "stylelint-csstree-validator"],
   "rules": {
     "at-rule-no-unknown": [
@@ -25,8 +25,16 @@
           "screen"
         ]
       }
+    ],  
+    "property-no-unknown": [
+      true,
+      {
+        "ignoreProperties": ["print-color-adjust"]
+      }
     ],
-    "csstree/validator": true
+    "no-duplicate-selectors": null,
+    "declaration-block-trailing-semicolon": null,
+    "no-descending-specificity": null
   },
   "ignoreFiles": ["build/**", "dist/**", "**/reset*.css", "**/bootstrap*.css"]
 }

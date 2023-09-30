@@ -1,0 +1,26 @@
+<section class="container flex-col">
+  <h1 class="text-4xl text-center">
+    Add a new Post for current user (<%= @user.name %>)
+  </h1>
+  <div>
+    <% if flash[:alert].present? %>
+    <div class="alert italic font-bold text-xl text-red-500 text-center py-2">
+      <%= flash[:alert] %>
+    </div>
+    <% end %>
+  </div>
+  <div class="p-4">
+    <%= form_with model: [@user, @new_post] do |form| %>
+      <div class="w-full mb-4">
+        <%= form.label :Title %> <%= form.text_field :title, class: 'w-full p-2 border border-gray-300' %>
+      </div>
+      <div class="w-full mb-4">
+        <%= form.label :Description %> <%= form.text_area :text, class: 'w-full p-2 border border-gray-300' %>
+      </div>
+      <div class="w-full">
+        <%= form.submit 'Create Post', class: 'w-full p-2 bg-blue-500 text-white hover:bg-blue-700' %>
+      </div>
+    <% end %>
+  </div> 
+  <%= render 'layouts/root'%>
+</section>
