@@ -2,34 +2,36 @@
   <header>
     <h1>List of Posts</h1>
   </header>
-  <ul>
-    <% @users.each do |user| %>
-      <li>
-        <h2><%= user.name %></h2>
-        <p>Number of posts: <%=user.posts_counter %></p>
-        <hr>
-        <ul>
-          <% @posts.each do |post| %>
-            <% if post.author_id == user.id %> 
-              <li>
-                <a href="http://127.0.0.1:3000/users/<%= post.author.id %>/posts/<%= post.id %>">
-                  <h3>Post #<%= post.id %></h3>  
-                </a>  
+  <section>
+    <ul>
+      <% @users.each do |user| %>
+        <li>
+          <h2><%= user.name %></h2>
+          <p>Number of posts: <%=user.posts_counter %></p>
+          <hr>
+          <ul>
+            <% user.recent_post_by_author(user.id).each do |post| %>
+              <li>    
+                <%= link_to user_post_path(id: post.id) do%>
+                  <h3>Post #<%= post.id %></h3>
+                <% end %>  
                 <p><%= post.text %></p>
                 <p>Comments: <%= post.comments_counter%>, Likes: <%= post.likes_counter%></p>
                 <hr>
                 <ul>
-                  <% post.recent_comments.each do |comment| %> 
-                    <% if post.id == comment.post_id %> 
-                      <li><strong><%=comment.author.name%>:</strong>  <i><%= comment.text %></i></li> 
-                    <% end %> 
+                  <% post.recent_comments.each do |comment| %>
+                    <% if post.id == comment.post_id %>
+                      <li><strong><%=comment.author.name%>:</strong>  <i><%= comment.text %></i></li>
+                    <% end %>
                   <% end %>
                 </ul>
               </li>
-            <% end %> 
-          <% end %> 
-        </ul>
-      </li>
-    <% end %> 
-  </ul>
+            <% end %>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+  <br>
+  <%= render 'layouts/root'%>
 </main>

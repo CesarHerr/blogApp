@@ -1,13 +1,33 @@
 <main>
-  <h1>Post #<%=@post.id%> by <%= @post.author.name%></h1>
-  <p>Comments: <%= @post.comments_counter%>, Likes: <%= @post.likes_counter%></p>
-  <p><%=@post.text%></p>
-  <hr>  
-  <ul>
-    <% @comments.each do |comment| %>
-      <% if @post.id == comment.post_id %> 
-        <li><strong><%=comment.author.name%>:</strong>  <i><%= comment.text %></i></li> 
-      <% end %> 
+  <section>
+    <h1>Post #<%=@post.id%> by <%= @post.author.name%></h1>
+    <p>
+      Comments: <%= @post.comments_counter%>, Likes: <%= @post.likes_counter%>
+    </p>
+    <p><%=@post.text%></p>
+    <section>
+      <%= form_tag user_post_like_path(@post.author, @post), method: :post do %>
+        <%= hidden_field_tag :id, @post.id %>
+        <%= submit_tag "Like" %>
+      <% end %>
+    </section>
+    <hr />
+    <% if flash[:notice].present? %>
+      <p class="notice"><%= flash[:notice] %></p>
     <% end %>
-  </ul>
+    <ul>
+      <% @comments.reverse.each do |comment| %> <% if @post.id == comment.post_id %>
+      <li>
+        <strong><%=comment.author.name%>:</strong> <i><%= comment.text %></i>
+      </li>
+      <% end %> <% end %>
+    </ul>
+  </section>
+  <section>
+    <%= link_to new_user_post_comment_path(post_id: @post.id) do %>
+      <h2>Add new Comment</h2>
+    <% end %>  
+  </section>
+  <br>
+  <%= render 'layouts/root'%>
 </main>
