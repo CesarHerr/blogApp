@@ -10,6 +10,7 @@
   </header>
 
   <div class="bg-gray-200 relative p-4">
+    <h2 class="text-2xl pb-4 font-bold"><%=@post.title%></h2>
     <p class="text-2xl"><%=@post.text%></p>
     <div class="w-12 right-0 top-2 absolute hover:scale-y-125 transition-all">
       <%= form_tag user_post_likes_path(@post.author, @post), method: :post do %>
