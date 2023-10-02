@@ -8,16 +8,19 @@
       Number of posts: <%= @user.posts_counter%>
     </p>
   </header>
+
   <div class="bg-gray-200 p-4">
     <h3 class="text-2xl">Bio</h3>
     <p class="text-xl"><%= @user.bio%></p>
   </div>
+
   <div class="bg-gray-200">
     <% if flash[:notice].present? %>
     <p class="notice italic font-bold text-xl text-red-500 text-center py-2"><%= flash[:notice] %></p>
     <% end %>
-    <ul class="p-4">
-      <% @post.each do |post| %>
+
+    <ul class="p-4">    
+      <% @user.posts.each do |post| %>
       <li>
         <%= link_to user_post_path(user_id: post.author_id, id: post.id) do%>
         <h3
@@ -30,7 +33,9 @@
       </li>
       <% end %>
     </ul>
+    
   </div>
+
   <div class="flex justify-between gap-8 pt-4 pb-10">
     <div>
       <%= link_to user_posts_path(@user) do%>
@@ -39,6 +44,7 @@
       </button>
       <% end %>
     </div>  
+
     <%= render 'layouts/root'%>    
   </div>
 </section>
