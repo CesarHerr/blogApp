@@ -20,4 +20,26 @@ describe "Visit the users' index page", type: :feature do
     expect(page).to have_css('img[src="https://randomuser.me/api/portraits/men/51.jpg"]')
     expect(page).to have_css('img[src="https://randomuser.me/api/portraits/women/54.jpg"]')
   end
+
+  it "should show the number of posts each user has written" do
+    Post.create(author: @user1, title: 'Post 1 for user 1', text: 'This is the content of Post 1 for user 1')
+    Post.create(author: @user1, title: 'Post 2 for user 1', text: 'This is the content of Post 2 for user 1')
+    Post.create(author: @user1, title: 'Post 3 for user 1', text: 'This is the content of Post 3 for user 1')
+
+    Post.create(author: @user2, title: 'Post 1 for user 2', text: 'This is the content of Post 1 for user 2')
+    Post.create(author: @user2, title: 'Post 2 for user 2', text: 'This is the content of Post 2 for user 2')
+
+    user3 = User.create(name: 'Louis Smith')
+    Post.create(author: user3, title: 'Post 1 for user 3', text: 'This is the content of Post 1 for user 3')
+
+    user4 = User.create(name: 'Gerard Ford')
+    Post.create(author: user4, title: 'Post 1 for user 4', text: 'This is the content of Post 1 for user 4')
+    
+    visit users_path
+
+    expect(page).to have_content 'Number of posts: 3'
+    expect(page).to have_content 'Number of posts: 2'
+    expect(page).to have_content 'Number of posts: 1'
+    expect(page).to have_content 'Number of posts: 0'
+  end
 end
