@@ -46,6 +46,9 @@
       </li>
       <% end %>
     </ul>
-  </div>  
+  </div>
+  <div class="pagination text-3xl my-4 text-right">
+  <%= paginate @users %>
+</div> 
   <%= render 'layouts/root'%>
 </section>

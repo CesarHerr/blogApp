@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :find_current_user, only: [:new, :create]
 
   def index
-    @users = User.includes(posts: { comments: :author }).all
+    @users = User.includes(posts: { comments: :author }).page(params[:page]).per(1)
   end
 
   def show
