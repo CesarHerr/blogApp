@@ -11,4 +11,13 @@ describe "Visit the users' index page", type: :feature do
     expect(page).to have_content 'Nick Jhons'
     expect(page).to have_content 'Jenna Lenz'
   end
+
+  it 'should show the profile picture for each user' do
+    visit users_path
+
+    expect(page).to have_selector('img')
+
+    expect(page).to have_css('img[src="https://randomuser.me/api/portraits/men/51.jpg"]')
+    expect(page).to have_css('img[src="https://randomuser.me/api/portraits/women/54.jpg"]')
+  end
 end
