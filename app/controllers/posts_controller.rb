@@ -1,20 +1,20 @@
 class PostsController < ApplicationController
+  before_action :find_current_user, only: [:new, :create]
+
   def index
-    @users = User.all
+    @users = User.includes(posts: { comments: :author }).all
   end
 
   def show
-    @post = Post.find(params[:id])
-    @comments = Comment.all
+    @post = Post.includes(comments: :author).find(params[:id])
   end
 
   def new
-    @user = current_user
     @new_post = Post.new
   end
 
   def create
-    @post = current_user.posts.new(post_params)
+    @post = @user.posts.new(post_params)
     if @post.save
       flash[:notice] = 'Post successfully added!'
       redirect_to user_path(current_user)
@@ -26,5 +26,11 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :text)
+  end
+
+  private
+
+  def find_current_user
+    @user = current_user
   end
 end
