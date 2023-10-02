@@ -33,8 +33,7 @@ describe "Visit the users' index page", type: :feature do
     Post.create(author: user3, title: 'Post 1 for user 3', text: 'This is the content of Post 1 for user 3')
 
     user4 = User.create(name: 'Gerard Ford')
-    Post.create(author: user4, title: 'Post 1 for user 4', text: 'This is the content of Post 1 for user 4')
-    
+
     visit users_path
 
     expect(page).to have_content 'Number of posts: 3'
