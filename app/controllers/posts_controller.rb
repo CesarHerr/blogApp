@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
-  before_action :find_current_user, only: [:new, :create]
+  before_action :find_current_user, only: %i[new create]
 
   def index
-    @users = User.includes(posts: { comments: :author }).page(params[:page]).per(1)
+    @user =User.find(params[:user_id])
+    @posts = @user.posts.page(params[:page]).per(3)
   end
 
   def show
