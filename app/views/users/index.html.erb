@@ -1,29 +1,33 @@
 
   <section class="container">
     <h1 class='text-5xl text-center font-bold pb-4 bg-gray-300'>List of Users</h1>
+
     <ul class="bg-gray-200">
       <% @users.each do |user| %>
+
         <li class="border-t border-gray-400 hover:bg-gray-300">
           <div class="grid grid-cols-4 gap-4">
             <div class="col-span-1 ">
-              <%= image_tag user.photo %>
+              <img src="<%= user.photo %>" alt="photo">
             </div>
+
             <div class="col-span-2 my-auto">
+
               <%= link_to user_path(id: user.id) do %>              
                 <h2 class="text-4xl font-bold hover:scale-y-125 transition-all">
                   <%= user.name %>
                 </h2>              
-              <% end %>
+              <% end %>              
             </div>  
+
             <div class="col-span-1 relative">
               <p class="text-sm bottom-2 right-2 absolute ">Number of posts: <%= user.posts_counter %></p>        
             </div>
           </div>
         </li>
-      <% end %>
-    </ul>  
-  <%= link_to new_user_post_path(@user) do %>
-    <h2 class="pt-5 text-5xl hover:scale-y-125 transition-all">Add a new Post</h2>
-  <% end %>
+      <% end %>      
+    </ul>    
+    <%= link_to new_user_post_path(@user) do %>
+      <h2 class="pt-5 text-5xl hover:scale-y-125 transition-all">Add a new Post</h2>
+    <% end %> 
 </section>
-

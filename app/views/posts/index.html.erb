@@ -1,24 +1,21 @@
 <section class="container flex-col pb-8">
-  <header>
-    <h1 class="text-center text-5xl">List of Posts by User</h1>
-  </header>
-  <div class="pb-4">
-    <ul class="flex-col">
-      <% @users.each do |user| %>
-      <li>
-        <div class="pl-3 pr-3 border-solid border-1 bg-gray-300 grid grid-cols-4 relative">
-          <div class="col-span-1"><%= image_tag user.photo %></div>
-          <h2 class="text-4xl my-auto font-bold col-span-2"><%= user.name %></h2>
-          <p class="col-span-1 absolute right-4 bottom-2">Number of posts: <%=user.posts_counter %></p>
-        </div>
+<h1 class="text-center text-5xl">List of Posts by User</h1>
 
+  <header class="pl-3 pr-3 border-solid border-1 bg-gray-300 grid grid-cols-4 relative">
+    <div class="col-span-1"><%= image_tag @user.photo %></div>
+    <h2 class="text-4xl my-auto font-bold col-span-2"><%= @user.name %></h2>
+    <p class="col-span-1 absolute right-4 bottom-2">Number of posts: <%= @user.posts_counter %></p>    
+  </header>
+
+  <div class="pb-4">
+    
         <ul>
-          <% user.recent_post_by_author(user.id).each do |post| %>
+          <% @posts.each do |post| %>
           <li>
             <div class="bg-gray-200 relative p-4 ">
               <%= link_to user_post_path(id: post.id) do%>
                 <h3 class="text-2xl hover:scale-y-125 transition-all hover:bg-gray-300">
-                  Post #<%= post.id %>
+                  Post #<%= post.id %>, Title: <strong><%= post.title.capitalize %></strong>
                 </h3>
               <% end %>
               <p class="py-8"><%= post.text %></p>
@@ -41,10 +38,12 @@
             </ul>
           </li>
           <% end %>
-        </ul>
-      </li>
-      <% end %>
-    </ul>
-  </div>  
+        </ul>      
+    
+  </div>
+
+  <div class="pagination text-3xl my-4 text-right">
+  <%= paginate @posts %>
+</div> 
   <%= render 'layouts/root'%>
 </section>

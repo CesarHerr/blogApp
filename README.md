@@ -15,7 +15,7 @@
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
   - [Usage](#usage)
-  - [Tests](#tests)
+  - [Run Tests](#tests)
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
@@ -118,6 +118,8 @@ To fix the linter use:
   rubocop -A
 ```
 
+### Tests
+
 To Run Test: 
 
 ```sh
@@ -132,14 +134,17 @@ To Run Test:
 -   GitHub: [@CesarHerr](https://github.com/CesarHerr)
 -   LinkedIn: [Cesarherr](https://www.linkedin.com/in/cesarHerr/)
 
+👤 **Carmen Bravo**
+-   GitHub: [@NitBravoA92](https://github.com/NitBravoA92)
+-   LinkedIn: [nitcelis-bravo](https://www.linkedin.com/in/nitcelis-bravo-alcala-b65340158/)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [] **Add view**
-- [] **Add form**
-- [] **Add API endpoints**
+- [] **Add a device**
+- [] **Add authorization rules**
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
