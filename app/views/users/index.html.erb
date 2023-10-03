@@ -12,6 +12,7 @@
             </div>
 
             <div class="col-span-2 my-auto">
+
               <%= link_to user_path(id: user.id) do %>              
                 <h2 class="text-4xl font-bold hover:scale-y-125 transition-all">
                   <%= user.name %>
@@ -24,12 +25,9 @@
             </div>
           </div>
         </li>
-
-      <% end %>
-    </ul>  
-
-  <%= link_to new_user_post_path(@user) do %>
-    <h2 class="pt-5 text-5xl hover:scale-y-125 transition-all">Add a new Post</h2>
-  <% end %>
+      <% end %>      
+    </ul>    
+    <%= link_to new_user_post_path(@user) do %>
+      <h2 class="pt-5 text-5xl hover:scale-y-125 transition-all">Add a new Post</h2>
+    <% end %> 
 </section>
-

@@ -2,8 +2,8 @@ class PostsController < ApplicationController
   before_action :find_current_user, only: %i[new create]
 
   def index
-    @user =User.find(params[:user_id])
-    @posts = @user.posts.page(params[:page]).per(3)
+    @user = User.find(params[:user_id])
+    @posts = @user.posts.page(params[:page]).per(3).order('created_at ASC')
   end
 
   def show

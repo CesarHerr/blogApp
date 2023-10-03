@@ -28,10 +28,10 @@ RSpec.describe User, type: :model do
 
     describe 'methods' do
       it 'returns recent 3 posts by author' do
-        Post.create(author: @user, title: 'Post 1')
-        post2 = Post.create(author: @user, title: 'Post 2')
-        post3 = Post.create(author: @user, title: 'Post 3')
-        post4 = Post.create(author: @user, title: 'Post 4')
+        Post.create(author: @user, title: 'Post 1', text: 'Content of Post 1')
+        post2 = Post.create(author: @user, title: 'Post 2', text: 'Content of Post 2')
+        post3 = Post.create(author: @user, title: 'Post 3', text: 'Content of Post 3')
+        post4 = Post.create(author: @user, title: 'Post 4', text: 'Content of Post 4')
 
         recent_posts = @user.recent_post_by_author(@user.id)
 
