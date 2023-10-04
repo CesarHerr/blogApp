@@ -7,8 +7,13 @@
         <% @users.each do |user| %>
           <li class="border-t border-gray-400 hover:bg-gray-300">
             <div class="grid grid-cols-4 gap-4">
+
               <div class="col-span-1 ">
-                <img src="<%= user.photo %>" alt="photo">
+                <% if user.photo.present? %>
+                  <img src="<%= user.photo %>" alt="photo">
+                <% else %>
+                <p>::::: No photo ::::: 📸</p>
+                <% end %>                
               </div>
 
               <div class="col-span-2 my-auto">
@@ -28,13 +33,16 @@
       </ul>
     <% else %>
     
-    <p class="text-center text-2xl">No hay usuarios creados.</p>
+    <p class="text-center text-2xl">No users created.</p>
   <% end %>   
     <% if @users.any? %>
-      <%= link_to new_user_post_path(@user) do %>
-        <h2 class="pt-5 text-5xl hover:scale-y-125 transition-all">Add a new Post</h2>
-      <% end %>
-    <% else %>
-      <p class="text-center text-2xl">No hay usuarios creados.</p>
+  <% @users.each do |user| %>
+    <%= link_to new_user_post_path(user) do %>
+      <h2 class="pt-5 text-5xl hover:scale-y-125 transition-all">Add a new Post</h2>
     <% end %>
+  <% end %>
+<% else %>
+  <p class="text-center text-2xl">Sing Up !!!</p>
+<% end %>
+
 </section>
