@@ -128,7 +128,7 @@ To Run Test:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## 👥 Author <a name="author"></a>
+## 👥 Authors <a name="author"></a>
 
 👤 **Cesar Herrera**
 -   GitHub: [@CesarHerr](https://github.com/CesarHerr)
@@ -143,7 +143,6 @@ To Run Test:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [] **Add a device**
 - [] **Add authorization rules**
 
 

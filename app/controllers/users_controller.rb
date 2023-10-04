@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:show]
+  before_action :find_user_by_id, only: [:show]
+
   def index
     @users = User.all
     @user = current_user
@@ -6,5 +9,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.includes(posts: :author).find(params[:id])
+  end
+
+  def find_user_by_id
+    @user = current_user
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = 'Error! User not found'
+    redirect_to users_url
   end
 end

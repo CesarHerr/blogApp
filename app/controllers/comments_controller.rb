@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :find_post_by_id, only: %i[new create]
+
   def new
     @user = current_user
     @post = Post.find(params[:post_id])
@@ -22,5 +24,12 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:text)
+  end
+
+  def find_post_by_id
+    @post = Post.find(params[:post_id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = 'Error! Post not found'
+    redirect_to user_posts_path
   end
 end

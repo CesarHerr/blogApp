@@ -14,6 +14,26 @@
   </head>
 
   <body>
+    <div>    
+      </div>
+        <% if user_signed_in? %>
+          <%= link_to 'Sign Out', destroy_user_session_path, data: { turbo_method: :delete } %>
+        <% else %>
+        <div class="text-right text-3xl">
+          <span class="p-4">
+            <%= link_to 'Sign In', new_user_session_path %>
+          </span>
+          <span class="p-4">
+            <%= link_to 'Sign Up', new_user_registration_path %>
+          </span>  
+        </div>
+        <% end %>
+      </div>
+      <div>
+        <p class="notice italic font-bold text-xl text-red-500 text-center py-2"><%= notice %></p>
+        <p class="alert italic font-bold text-xl text-red-500 text-center py-2"><%= alert %></p>
+      </div>
+    </div>
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>
