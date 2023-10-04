@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :find_current_user, only: %i[new create]
+  before_action :find_user_by_id, only: %i[index show]
 
   def index
     @user = User.find(params[:user_id])
@@ -7,15 +7,17 @@ class PostsController < ApplicationController
   end
 
   def show
+    @user = current_user
     @post = Post.includes(comments: :author).find(params[:id])
   end
 
   def new
+    @user = current_user
     @new_post = Post.new
   end
 
   def create
-    @post = @user.posts.new(post_params)
+    @post = current_user.posts.new(post_params)
     if @post.save
       flash[:notice] = 'Post successfully added!'
       redirect_to user_path(current_user)
@@ -25,13 +27,16 @@ class PostsController < ApplicationController
     end
   end
 
+  private
+
   def post_params
     params.require(:post).permit(:title, :text)
   end
 
-  private
-
-  def find_current_user
-    @user = current_user
+  def find_user_by_id
+    @user = User.find(params[:user_id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = 'Error! User not found'
+    redirect_to users_url
   end
 end
