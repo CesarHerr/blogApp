@@ -2,7 +2,13 @@
 <h1 class="text-center text-5xl">List of Posts by User</h1>
 
   <header class="pl-3 pr-3 border-solid border-1 bg-gray-300 grid grid-cols-4 relative">
-    <div class="col-span-1"><%= image_tag @user.photo %></div>
+    <div class="col-span-1">
+      <% if @user.photo.present? %>
+        <%= image_tag @user.photo %>
+      <% else %>
+        <p>::::: No photo ::::: 📸</p>
+      <% end %>
+    </div>
     <h2 class="text-4xl my-auto font-bold col-span-2"><%= @user.name %></h2>
     <p class="col-span-1 absolute right-4 bottom-2">Number of posts: <%= @user.posts_counter %></p>    
   </header>

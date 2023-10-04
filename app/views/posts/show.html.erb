@@ -1,6 +1,12 @@
 <section class="container flex-col">
   <header class="pl-3 pr-3 border-solid border-1 bg-gray-300 grid grid-cols-4 relative">
-    <div class="col-span-1"><%= image_tag @post.author.photo %></div>
+    <div class="col-span-1">
+      <% if @user.photo.present? %>
+        <%= image_tag @user.photo %>
+      <% else %>
+        <p>::::: No photo :::::</p>
+      <% end %>
+    </div>
     <h1 class="text-5xl my-auto font-bold col-span-2">Post #
       <%=@post.id%> by <%= @post.author.name%>
     </h1>
@@ -18,13 +24,7 @@
         <%= image_tag 'heart.png', alt: 'Like', class: 'cursor-pointer', onclick: 'this.closest("form").submit();' %>
       <% end %>
     </div>
-  </div> 
-
-  <div class="bg-gray-200">
-    <% if flash[:notice].present? %>
-      <p class="notice italic font-bold text-xl text-red-500 text-center py-2"><%= flash[:notice] %></p>
-    <% end %>
-  </div>
+  </div>   
 
   <ul class="p-4 border-t border-b border-gray-300 bg-gray-200">
     <% @post.comments.reverse.each do |comment| %>
