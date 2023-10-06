@@ -24,7 +24,13 @@
         <%= image_tag 'heart.png', alt: 'Like', class: 'cursor-pointer', onclick: 'this.closest("form").submit();' %>
       <% end %>
     </div>
-  </div>   
+    <div>
+      <% if can?(:destroy, @post) %>
+        <%= button_to 'Delete Post', user_post_path(@post.author, @post), method: :delete,
+            class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
+        <% end %>
+    </div>
+  </div>
 
   <ul class="p-4 border-t border-b border-gray-300 bg-gray-200">
     <% @post.comments.reverse.each do |comment| %>
