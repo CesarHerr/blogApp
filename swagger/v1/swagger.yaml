@@ -1,0 +1,174 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/users/{user_id}/posts/{post_id}/comments":
+    parameters:
+    - name: user_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    - name: post_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: List all comments by post
+      tags:
+      - Comments by posts
+      responses:
+        '200':
+          description: Comments found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    user_id:
+                      type: integer
+                    post_id:
+                      type: integer
+                    text:
+                      type: string
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                  required:
+                  - id
+                  - user_id
+                  - post_id
+                  - text
+            application/xml:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    user_id:
+                      type: integer
+                    post_id:
+                      type: integer
+                    text:
+                      type: string
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                  required:
+                  - id
+                  - user_id
+                  - post_id
+                  - text
+    post:
+      summary: Create a comment in a post
+      tags:
+      - Comments
+      parameters: []
+      responses:
+        '201':
+          description: Comment created
+        '422':
+          description: unprocessable_entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+            examples:
+              '0':
+                summary: Create a comment in a post
+                value:
+                  text: This is an example comment.
+          application/xml:
+            schema:
+              type: string
+            examples:
+              '0':
+                summary: Create a comment in a post
+                value:
+                  text: This is an example comment.
+        required: true
+        description: Comment text
+  "/api/v1/users/{user_id}/posts":
+    get:
+      summary: List all posts
+      tags:
+      - Posts by user
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Posts found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    author_id:
+                      type: integer
+                    title:
+                      type: string
+                    text:
+                      type: string
+                    comments_counter:
+                      type: integer
+                    likes_counter:
+                      type: integer
+                  required:
+                  - id
+                  - author_id
+                  - title
+                  - text
+            application/xml:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    author_id:
+                      type: integer
+                    title:
+                      type: string
+                    text:
+                      type: string
+                    comments_counter:
+                      type: integer
+                    likes_counter:
+                      type: integer
+                  required:
+                  - id
+                  - author_id
+                  - title
+                  - text
+        '404':
+          description: User not found
+servers:
+- url: http://localhost:3000/
+  variables:
+    defaultHost:
+      default: http://localhost:3000/
