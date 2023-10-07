@@ -18,7 +18,7 @@ class Api::V1::CommentsController < ApplicationController
 
     @comment = @post.comments.new(text:, author:)
     if @comment.save
-      render json: @comment
+      render json: @comment, status: :created
     else
       render json: { error: 'Invalid comment' }, status: :unprocessable_entity
     end

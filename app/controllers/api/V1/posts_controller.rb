@@ -5,5 +5,7 @@ class Api::V1::PostsController < ActionController::API
     @posts = @user.posts
 
     render json: @posts
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: 'User not found' }, status: :not_found
   end
 end
