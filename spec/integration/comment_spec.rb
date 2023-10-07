@@ -24,15 +24,17 @@ RSpec.describe 'Comments API', type: :request do
                  required: %w[id user_id post_id text]
                }
 
-        let(:user) { User.create(name: 'Swagger', email: 'test4@example.com', password: '123456') }
-        let(:post) { Post.create(author_id: user.id, title: 'Hello', text: 'This is my first post') }
-
-        let(:user_id) { user.id }
-        let(:post_id) { post.id }
+        let(:user_id) { User.create(name: 'Swagger', email: 'test4@example.com', password: '123456').id }
+        let(:post_id) { Post.create(author_id: user_id, title: 'Hello', text: 'This is my first post').id }
 
         run_test!
       end
     end
+  end
+
+  path '/api/v1/users/{user_id}/posts/{post_id}/comments' do
+    parameter name: :user_id, in: :path, type: :integer, required: true
+    parameter name: :post_id, in: :path, type: :integer, required: true
 
     post 'Create a comment in a post' do
       tags 'Comments'
@@ -40,8 +42,6 @@ RSpec.describe 'Comments API', type: :request do
       parameter name: :text, in: :body, type: :string, description: 'Comment text', required: true
 
       request_body_example value: {
-        user_id: 1,
-        post_id: 123,
         text: 'This is an example comment.'
       }
 
@@ -52,8 +52,7 @@ RSpec.describe 'Comments API', type: :request do
                  user_id: { type: :integer },
                  post_id: { type: :integer },
                  text: { type: :string },
-                 created_at: { type: :string, format: 'date-time' },
-                 updated_at: { type: :string, format: 'date-time' }
+                 created_at: { type: :string, format: 'date-time' }
                }
 
         let(:user_id) { User.create(name: 'Swagger', email: 'test@example.com', password: '123456').id }
@@ -72,5 +71,5 @@ RSpec.describe 'Comments API', type: :request do
         run_test!
       end
     end
-    end
+  end
 end

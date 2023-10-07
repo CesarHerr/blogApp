@@ -22,9 +22,7 @@ RSpec.describe 'Posts API', type: :request do
                    title: { type: :string },
                    text: { type: :string },
                    comments_counter: { type: :integer },
-                   likes_counter: { type: :integer },
-                   created_at: { type: :string },
-                   updated_at: { type: :string }
+                   likes_counter: { type: :integer }
                  },
                  required: %w[id author_id title text]
                }
