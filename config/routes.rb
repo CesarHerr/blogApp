@@ -13,8 +13,6 @@ Rails.application.routes.draw do
 
   # API endpoints
   namespace :api do
-    get 'comments/index'
-    get 'posts/index'
     namespace :v1 do
       resources :users, only: [:index] do
         resources :posts, only: [:index] do
