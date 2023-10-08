@@ -7,7 +7,7 @@ class Api::V1::CommentsController < ApplicationController
     comments = post.comments
     render json: comments
   rescue ActiveRecord::RecordNotFound
-    render json: { error: 'User not found' }, status: 404
+    render json: { error: 'Comment not found' }, status: 404
   end
 
   def create
