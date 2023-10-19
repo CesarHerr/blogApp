@@ -1,13 +1,12 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: %i[new create addlike deletelike destroy]
   before_action :find_user_by_id, only: %i[index show]
 
   def index
-    @user = User.find(params[:user_id])
     @posts = @user.posts.page(params[:page]).per(3).order('created_at ASC')
   end
 
   def show
-    @user = current_user
     @post = Post.includes(comments: :author).find(params[:id])
   end
 
@@ -25,6 +24,17 @@ class PostsController < ApplicationController
       flash[:alert] = 'Post could not be added.'
       redirect_to new_user_post_path(current_user)
     end
+  end
+
+  def destroy
+    @post = Post.includes(comments: :author).find(params[:id])
+    authorize! :destroy, @post
+    if @post.destroy
+      flash[:notice] = 'Post successfully deleted!'
+    else
+      flash[:alert] = 'Post could not be deleted.'
+    end
+    redirect_to user_path(current_user)
   end
 
   private

@@ -5,6 +5,8 @@ ruby '3.2.2'
 
 gem 'kaminari'
 
+gem 'cancancan'
+
 gem 'activerecord', '~> 7.0.0'
 
 gem 'rails-controller-testing'
@@ -71,6 +73,8 @@ group :development, :test do
 
   gem 'webdrivers'
 end
+
+gem 'rswag'
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]

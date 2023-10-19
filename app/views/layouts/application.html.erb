@@ -16,8 +16,12 @@
   <body>
     <div>    
       </div>
+      
         <% if user_signed_in? %>
-          <%= link_to 'Sign Out', destroy_user_session_path, data: { turbo_method: :delete } %>
+        <span class="flex justify-between px-8">
+          <%= link_to 'Sign Out', destroy_user_session_path, data: { turbo_method: :delete } %>          
+           <p>Name : <strong><%= current_user.name %></strong> role:<strong> <%= current_user.role %> </strong></p>
+          </span>
         <% else %>
         <div class="text-right text-3xl">
           <span class="p-4">

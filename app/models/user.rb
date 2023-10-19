@@ -15,4 +15,8 @@ class User < ApplicationRecord
   def recent_post_by_author(author_id)
     posts.where(author_id:).order(created_at: :desc).limit(3)
   end
+
+  def set_default_user_role
+    self.role ||= 'admin'
+  end
 end

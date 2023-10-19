@@ -35,12 +35,11 @@
     
     <p class="text-center text-2xl">No users created.</p>
   <% end %>   
-    <% if @users.any? %>
-  <% @users.each do |user| %>
-    <%= link_to new_user_post_path(user) do %>
+    <% if current_user.present? %>    
+    <%= link_to new_user_post_path(current_user) do %>
       <h2 class="pt-5 text-5xl hover:scale-y-125 transition-all">Add a new Post</h2>
     <% end %>
-  <% end %>
+  
 <% else %>
   <p class="text-center text-2xl">Sing Up !!!</p>
 <% end %>

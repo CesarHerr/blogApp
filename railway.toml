@@ -1,0 +1,24 @@
+# FILEPATH: /home/cesdev/Microverse/module5/blogApp/railway.toml
+
+[build]
+  # Select the Ruby version you want to use
+  # Example: "ruby = '3.0.2'"
+  ruby = '3.2.2'
+
+  # Install dependencies
+  # Example: "command = 'bundle install --path vendor/bundle'"
+  command = 'bundle install'
+
+[env]
+  # Set your Rails environment variables here
+  # Example: "DATABASE_URL = 'postgres://user:password@host:port/database'"
+  DATABASE_URL = 'postgresql://postgres:0w2H4eUAV9j4j1Aagaxr@containers-us-west-103.railway.app:7867/railway'
+
+[deploy]
+  # Set the command to start your Rails app
+  # Example: "command = 'bundle exec rails server -p $PORT -e $RAILS_ENV'"
+  command = 'bundle exec rails server -p $PORT -e $RAILS_ENV'
+
+  # Set the port your Rails app will listen on
+  # Example: "port = 3000"
+  port = 3000
