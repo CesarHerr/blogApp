@@ -1,30 +1,30 @@
 
-  <section class="container">
-    <h1 class='text-5xl text-center font-bold pb-4 bg-gray-300'>List of Users</h1>
+  <section class="container flex flex-col gap-4">
+    <h1 class='text-3xl md:text-5xl text-center font-bold pb-4'>List of Users</h1>
 
     <% if @users.present? %> 
       <ul class="bg-gray-200">
         <% @users.each do |user| %>
-          <li class="border-t border-gray-400 hover:bg-gray-300">
-            <div class="grid grid-cols-4 gap-4">
+          <li class="pb-4 hover:bg-gray-300 relative">
+            <div class="flex gap-4">
 
-              <div class="col-span-1 ">
+              <div>
                 <% if user.photo.present? %>
-                  <img src="<%= user.photo %>" alt="photo">
+                  <img src="<%= user.photo %>" alt="photo" class="rounded" width="100px">
                 <% else %>
                 <p>::::: No photo ::::: 📸</p>
-                <% end %>                
+                <% end %>
               </div>
 
-              <div class="col-span-2 my-auto">
-                <%= link_to user_path(id: user.id) do %>              
-                  <h2 class="text-4xl font-bold hover:scale-y-125 transition-all">
+              <div class="flex gap-2">
+                <%= link_to user_path(id: user.id) do %>        
+                  <h2 class="text-2xl font-bold hover:scale-y-125 transition-all">
                     <%= user.name %>
                   </h2>              
                 <% end %>              
               </div>  
 
-              <div class="col-span-1 relative">
+              <div class="flex">
                 <p class="text-sm bottom-2 right-2 absolute ">Number of posts: <%= user.posts_counter %></p>        
               </div>
             </div>
