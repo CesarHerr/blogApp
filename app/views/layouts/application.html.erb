@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BlogApp</title>
+    <title>Blog App</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -14,22 +12,21 @@
   </head>
 
   <body>
-    <div>    
-      </div>
-      
+    <header>
+      </div> 
         <% if user_signed_in? %>
         <span class="flex justify-between px-8">
-          <%= link_to 'Sign Out', destroy_user_session_path, data: { turbo_method: :delete } %>          
-           <p>Name : <strong><%= current_user.name %></strong> role:<strong> <%= current_user.role %> </strong></p>
+          <%= link_to 'Sign Out', destroy_user_session_path, data: { turbo_method: :delete } %>
+          <p>Name : <strong><%= current_user.name %></strong> role:<strong> <%= current_user.role %> </strong></p>
           </span>
         <% else %>
-        <div class="text-right text-3xl">
+        <div class="text-right text-xl flex justify-between">
           <span class="p-4">
             <%= link_to 'Sign In', new_user_session_path %>
           </span>
           <span class="p-4">
             <%= link_to 'Sign Up', new_user_registration_path %>
-          </span>  
+          </span>
         </div>
         <% end %>
       </div>
@@ -37,7 +34,7 @@
         <p class="notice italic font-bold text-xl text-red-500 text-center py-2"><%= notice %></p>
         <p class="alert italic font-bold text-xl text-red-500 text-center py-2"><%= alert %></p>
       </div>
-    </div>
+    </header>
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>
